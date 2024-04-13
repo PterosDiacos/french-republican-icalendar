@@ -47,7 +47,7 @@ def greg2rep(gregDate):
     # Leap year calculation. 
     # Follows the equinox method during the years of the Republic, 
     # and the Romme method afterwards
-    is_rep_leap_year = lambda year: (year == 3 or year == 7 or year == 11) or (year > 14 and year % 4 == 0 and (year % 100 != 0 or year % 400 == 0))
+    is_rep_leap_year = lambda year: (year in [3, 7, 11]) or (year > 14 and year % 4 == 0 and (year % 100 != 0 or year % 400 == 0))
     days_in_rep_year = lambda year: 365 + is_rep_leap_year(year)
 
     # Find the Republican year of the given date 
@@ -62,10 +62,8 @@ def greg2rep(gregDate):
 
     # Find the Republican date
     rep_day_of_year = (gregDate - first_day_of_year).days + 1  # Republican day of year
-    rep_month = (rep_day_of_year - 1) // 30 + 1  # Republican month
-    rep_day_of_month = rep_day_of_year % 30
-    if rep_day_of_month == 0:
-        rep_day_of_month = 30  # Republican day of month
+    rep_month = (rep_day_of_year - 1) // 30 + 1                # Republican month
+    rep_day_of_month = (rep_day_of_year - 1) % 30 + 1          # Republican day of month
 
     # Load the rural day name 
     rural_day_name = rural_day_names.iloc[0][rep_day_of_year - 1]
