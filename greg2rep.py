@@ -2,8 +2,8 @@ from datetime import datetime, timedelta
 import pandas as pd
 
 
-rural_day_names = pd.read_csv('ruralDayNames.csv', header=None, squeeze=True)
-french_rep_months = pd.read_csv('frenchRepublicanMonths.csv', header=None, squeeze=True)
+rural_day_names = pd.read_csv('ruralDayNames.csv', header=None).squeeze(axis=1)
+french_rep_months = pd.read_csv('frenchRepublicanMonths.csv', header=None).squeeze(axis=1)
 
 
 def greg2rep(gregDate):
